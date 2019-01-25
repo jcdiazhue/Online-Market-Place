@@ -1,6 +1,4 @@
-=====================================
 EXPLAINS PROJECT: ONLINE MARKET PLACE
-=====================================
 
 ## How to set it up (run a local development server)
 
