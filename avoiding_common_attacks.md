@@ -1,5 +1,5 @@
-AVOIDING_COMMON_ATTACKS: ONLINE MARKET PLACE
-============================================
+COMMON ATTACKS: ONLINE MARKET PLACE
+===================================
 
 ## Logic errors
 
