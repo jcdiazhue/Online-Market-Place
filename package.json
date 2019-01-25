@@ -1,0 +1,11 @@
+{
+  "scripts": {
+    "dev": "lite-server"
+  },
+  "dependencies": {
+    "web3": "^1.0.0-beta.35"
+  },
+  "devDependencies": {
+    "lite-server": "^2.4.0"
+  }
+}

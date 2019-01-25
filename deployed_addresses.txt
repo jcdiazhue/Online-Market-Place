@@ -1,0 +1,2 @@
+Ropsten market place smart contract adress: 0xcb3F89109000f4A9741c19e40DB9586Fd884514E
+Rinkeby market place smart contract adress: 0xB9F00AC14053A5bb75a2Ad9D5c296AB259b3E086

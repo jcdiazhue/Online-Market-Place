@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Online Market Place</title>
+
+  <!-- Bootstrap -->
+  <link href="./css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body style="padding-top: 50px;">
+
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">Online Market Place</a>
+    </div>
+  </nav>
+
+  <div id="ownerFunctions" style="display: none;">
+
+    <div class="container" style="text-align: center;">
+      <h1>Manage Market Place</h1>
+    </div>
+
+    <div class="container">
+      <h3>The market place is <span id="status"></span>.</h3>
+      <button type="submit" class="btn btn-danger closeMarket">Close</button>
+      <button type="submit" class="btn btn-primary openMarket">Open</button>
+    </div>
+
+    <div class="container">
+      <h3>Add Market Place Administrator</h3>
+      <form>
+        <div class="form-group">
+          <label for="addMarketPlaceAdministrator">Address</label>
+          <input type="text" class="form-control" id="addMarketPlaceAdministrator" aria-describedby="addAdministratorHelp" placeholder="0x0000000000000000000000000000000000000000">
+          <small id="addAdministratorHelp" class="form-text text-muted">Add an address to market place administrators.</small>
+        </div>
+        <button type="submit" class="btn btn-primary addMarketPlaceAdministrator marketOpen">Add</button>
+      </form>
+    </div>
+
+    <div class="container">
+      <h3>Market Place Administrators</h3>
+      <ul id="administratorsRow" class="list-group">
+      </ul>
+    </div>
+
+    <div id="administratorTemplate" style="display: none;">
+      <li class="list-group-item">
+        <strong>Address</strong>
+        <pre class="address">0x0000000000000000000000000000000000000000</pre>
+        <button type="submit" class="btn btn-danger deleteMarketPlaceAdministrator marketOpen" data-id="0">Delete</button>
+      </li>
+    </div>
+
+  </div>
+
+  <div id="administratorFunctions" style="display: none;">
+
+    <div class="container" style="text-align: center;">
+      <h1>Manage Market Place Store Owners</h1>
+    </div>
+
+    <div class="container">
+      <h3>Create Market Place Store Owner</h3>
+      <form>
+        <div class="form-group">
+          <label for="addStoreOwner">Address</label>
+          <input type="text" class="form-control" id="addStoreOwner" aria-describedby="addStoreOwnerHelp" placeholder="0x0000000000000000000000000000000000000000">
+          <small id="addStoreOwnerHelp" class="form-text text-muted">Add an store owner address.</small>
+        </div>
+        <button type="submit" class="btn btn-primary addStoreOwner marketOpen">Add</button>
+      </form>
+    </div>
+
+    <div class="container">
+      <h3>Confirm Market Place Store Owners</h3>
+      <ul id="storeOwnersRow" class="list-group">
+      </ul>
+    </div>
+
+    <div id="storeOwnerTemplate" style="display: none;">
+      <li class="list-group-item">
+        <strong>Address</strong>
+        <pre class="address">0x0000000000000000000000000000000000000000</pre>
+        <button type="submit" class="btn btn-danger deleteStoreOwner marketOpen" data-id="0">Delete</button>
+      </li>
+    </div>
+
+  </div>
+
+  <div id="storeOwnerFunctions" style="display: none;">
+
+    <div class="container" style="text-align: center;">
+      <h1>Manage Market Place Stores</h1>
+    </div>
+
+    <div class="container">
+      <h3>Create Market Place Store</h3>
+      <form>
+        <div class="form-group">
+          <label for="createStore">Name</label>
+          <input type="text" class="form-control" id="createStore" aria-describedby="createStoreHelp">
+          <small id="createStoreHelp" class="form-text text-muted">Create a new market place store.</small>
+        </div>
+        <button type="submit" class="btn btn-primary createStore marketOpen">Create</button>
+      </form>
+    </div>
+
+    <div class="container">
+      <h3>Market Place Stores</h3>
+      <ul id="ownedStoresRow" class="list-group">
+      </ul>
+    </div>
+
+    <div id="ownedStoreTemplate" style="display: none;">
+      <li class="list-group-item">
+        <span style="padding-right: 10px;">
+          <strong class="storeName">Store Name</strong>
+        </span>
+        <span>
+          <button type="submit" class="btn btn-primary manageMarketPlaceStore" data-id="0">Manage</button>
+        </span>
+        <span>
+          <button type="submit" class="btn btn-warning modifyStoreName marketOpen" data-id="0">Rename</button>
+        </span>
+        <span>
+          <button type="submit" class="btn btn-danger deleteStore marketOpen" data-id="0">Delete</button>
+        </span>
+      </li>
+    </div>
+  </div>
+
+  <div id="manageMarketPlaceStore" style="display: none;">
+
+    <div class="container" style="text-align: center;">
+      <h1 id="ownedStoreName">Market Place Store Name</h1>
+    </div>
+
+    <div class="container">
+      <button type="submit" class="btn btn-danger viewMarketPlaceStores">Home</button>
+    </div>
+
+    <div class="container">
+      <h3>Funds earned from sales are <span id="balance"></span> ETH.</h3>
+      <form>
+        <div class="form-group">
+          <label for="retireFunds">Retire</label>
+          <input type="text" class="form-control" id="retireFunds" aria-describedby="withdrawFundsHelp" placeholder="1 ETH">
+          <small id="withdrawFundsHelp" class="form-text text-muted">Enter the amount you would like to retire.</small>
+        </div>
+        <button type="submit" class="btn btn-primary retireFunds">Retire</button>
+      </form>
+    </div>
+
+    <div class="container">
+      <h3>Add Item</h3>
+      <form>
+        <div class="form-group">
+          <label for="itemName">Name</label>
+          <input type="text" class="form-control" id="itemName" aria-describedby="createStoreHelp" placeholder="Item Name">
+        </div>
+        <div class="form-group">
+          <label for="itemDescription">Description</label>
+          <input type="text" class="form-control" id="itemDescription" aria-describedby="createStoreHelp" placeholder="Item Description">
+        </div>
+        <div class="form-group">
+          <label for="itemPrice">Price</label>
+          <input type="text" class="form-control" id="itemPrice" aria-describedby="createStoreHelp" placeholder="1 ETH">
+        </div>
+        <div class="form-group">
+          <label for="itemStock">Quantity</label>
+          <input type="text" class="form-control" id="itemStock" aria-describedby="createStoreHelp" placeholder="1">
+        </div>
+        <button type="submit" class="btn btn-primary addItem marketOpen">Add Item</button>
+      </form>
+    </div>
+
+    <div class="container">
+      <h3>Manage Items</h3>
+      <div id="ownedItemsRow" class="row">
+      </div>
+    </div>
+
+    <div id="ownedItemTemplate" style="display: none;">
+      <div class="col-sm-6 col-md-4 col-lg-3">
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h3 class="panel-title">
+              <span class="itemName">Name</span>
+              <span class="badge modifyItemName" data-id="0">Modify</span>
+            </h3>
+          </div>
+          <div class="panel-body">
+            <span class="itemDescription">Description</span>
+            <span class="badge modifyItemDescription" data-id="0">Modify</span>
+            <br/>
+            <br/>
+            <strong>Price</strong>: <span class="itemPrice">3</span> ETH
+            <span class="badge modifyItemPrice" data-id="0">Modify</span>
+            <br/>
+            <strong>Quantity</strong>: <span class="itemStock">Warren, MI</span>
+            <span class="badge modifyItemStock" data-id="0">Modify</span>
+            <br/><br/>
+            <button class="btn btn-danger deleteItem marketOpen" type="button" data-id="0">Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="shopperFunctions" style="display: none;">
+
+    <div class="container" style="text-align: center;">
+      <h1>Market Place Stores Navigate</h1>
+    </div>
+
+    <div class="container">
+      <h3>Market Place Stores</h3>
+      <ul id="storesRow" class="list-group">
+      </ul>
+    </div>
+
+    <div id="storeTemplate" style="display: none;">
+      <li class="list-group-item">
+        <span style="padding-right: 10px;">
+          <strong class="storeName">Store Name</strong>
+        </span>
+        <span>
+          <button type="submit" class="btn btn-primary visitStore" data-id="0">Go</button>
+        </span>
+      </li>
+    </div>
+  </div>
+
+  <div id="visitStore" style="display: none;">
+
+    <div class="container" style="text-align: center;">
+      <h1 id="storeName">Market Place Store Name</h1>
+    </div>
+
+    <div class="container">
+      <button type="submit" class="btn btn-danger browseStores">Home</button>
+    </div>
+
+    <div class="container" style="padding-top: 20px">
+      <div id="itemsRow" class="row">
+      </div>
+    </div>
+
+    <div id="itemTemplate" style="display: none;">
+      <div class="col-sm-6 col-md-4 col-lg-3">
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h3 class="panel-title">
+              <span class="itemName">Name</span>
+            </h3>
+          </div>
+          <div class="panel-body">
+            <span class="itemDescription">Description</span>
+            <br/>
+            <br/>
+            <strong>Sale Price</strong>: <span class="itemPrice">3</span> ETH
+            <br/>
+            <strong>Stock</strong>: <span class="itemStock">Warren, MI</span>
+            <br/><br/>
+            <button class="btn btn-primary buyItem marketOpen" type="button" data-id="0">Buy</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="modalTemplate" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="modalText" class="col-form-label">Message</label>
+            <input type="text" class="form-control" id="modalText">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" id="cancelButton">Cancel</button>
+          <button type="button" class="btn btn-primary" id="okayButton">Ok</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js "></script>
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="js/bootstrap.min.js "></script>
+  <script src="js/web3.min.js "></script>
+  <script src="js/truffle-contract.js "></script>
+  <script src="js/app.js "></script>
+  <script src="js/ipfs.js"></script>
+  <script src="js/buffer.js"></script>
+</body>
+
+</html>
